@@ -1,6 +1,6 @@
 # bindata 
 
-Package bindata is a helper module that allows to use in-memory static and template files for Macaron via go-bindata (https://github.com/jteeuwen/go-bindata)
+Package bindata is a helper module allowing you to usee in-memory static and template files for Macaron via go-bindata (https://github.com/jteeuwen/go-bindata)
 
 Using go-bindata convert your template and public directories into individual packages. 
 Import the packages and use them like the example below.
