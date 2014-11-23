@@ -13,6 +13,7 @@ type (
 	templateFile struct {
 		name string
 		data []byte
+		ext  string
 	}
 
 	Options struct {
@@ -49,6 +50,10 @@ func (f *templateFile) Data() []byte {
 	return f.data
 }
 
+func (f *templateFile) Ext() string {
+	return f.ext
+}
+
 func Templates(opt Options) templateFileSystem {
 	fs := templateFileSystem{}
 	fs.files = make([]macaron.TemplateFile, 0, 10)
@@ -66,7 +71,7 @@ func Templates(opt Options) templateFileSystem {
 
 		name := (key[0 : len(key)-len(ext)])
 
-		fs.files = append(fs.files, &templateFile{name, data})
+		fs.files = append(fs.files, &templateFile{name, data, ext})
 	}
 
 	return fs

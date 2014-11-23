@@ -34,7 +34,3 @@ m.Use(macaron.Renderer(macaron.RenderOptions{
   }),
 }))
 ```
-
-# MIT LICENSE
-
-The MIT License (MIT) - [LICENSE](https://github.com/mephux/dnas/blob/master/LICENSE)
