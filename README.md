@@ -3,8 +3,6 @@ bindata [![Build Status](https://drone.io/github.com/macaron-contrib/bindata/sta
 
 Package bindata is a helper module that allows to use in-memory static and template files for Macaron via [go-bindata](https://github.com/jteeuwen/go-bindata).
 
-[API Reference](https://gowalker.org/github.com/macaron-contrib/bindata)
-
 ### Installation
 
 	go get github.com/macaron-contrib/bindata
