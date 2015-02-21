@@ -1,36 +1,19 @@
-# bindata 
+bindata [![Build Status](https://drone.io/github.com/macaron-contrib/bindata/status.png)](https://drone.io/github.com/macaron-contrib/bindata/latest)
+=======
 
-Package bindata is a helper module allowing you to use in-memory static and template files for Macaron via go-bindata (https://github.com/jteeuwen/go-bindata)
+Package bindata is a helper module that allows to use in-memory static and template files for Macaron via [go-bindata](https://github.com/jteeuwen/go-bindata).
 
-Using go-bindata convert your template and public directories into individual packages. 
-Import the packages and use them like the example below.
+[API Reference](https://gowalker.org/github.com/macaron-contrib/bindata)
 
-## Example
-```go
-import "path/to/bindata/public"
-import "path/to/bindata/templates"
+### Installation
 
-m.Use(macaron.Static(
-  path.Join(setting.StaticRootPath, "public"),
-  macaron.StaticOptions{
-    SkipLogging: false,
-    FileSystem: bindata.Static(bindata.Options{
-      Asset:      public.Asset,
-      AssetDir:   public.AssetDir,
-      AssetNames: public.AssetNames,
-      Prefix:     "",
-    }),
-  },
-))
+	go get github.com/macaron-contrib/bindata
 
-m.Use(macaron.Renderer(macaron.RenderOptions{
-  Funcs:      []template.FuncMap{base.TemplateFuncs},
-  IndentJSON: macaron.Env != macaron.PROD,
-  TemplateFileSystem: bindata.Templates(bindata.Options{
-    Asset:      templates.Asset,
-    AssetDir:   templates.AssetDir,
-    AssetNames: templates.AssetNames,
-    Prefix:     "",
-  }),
-}))
-```
+## Getting Help
+
+- [API Reference](https://gowalker.org/github.com/macaron-contrib/bindata)
+- [Documentation](http://macaron.gogs.io/docs/middlewares/bindata)
+
+## License
+
+This project is under Apache v2 License. See the [LICENSE](LICENSE) file for the full license text.
