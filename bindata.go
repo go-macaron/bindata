@@ -1,5 +1,5 @@
 // Copyright 2014 Dustin Webber
-// Copyright 2015 Unknwon
+// Copyright 2015 The Macaron Authors
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,11 +17,11 @@
 package bindata
 
 import (
-	"github.com/Unknwon/macaron"
 	"github.com/elazarl/go-bindata-assetfs"
+	"gopkg.in/macaron.v1"
 )
 
-const _VERSION = "0.0.1"
+const _VERSION = "0.1.0"
 
 func Version() string {
 	return _VERSION
