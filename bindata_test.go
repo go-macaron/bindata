@@ -41,6 +41,7 @@ func Test_Bindata(t *testing.T) {
 					Asset:      testdata.Asset,
 					AssetDir:   testdata.AssetDir,
 					AssetNames: testdata.AssetNames,
+					AssetInfo:  testdata.AssetInfo,
 					Prefix:     "",
 				}),
 			},

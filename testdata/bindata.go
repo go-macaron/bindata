@@ -5,12 +5,12 @@ import (
 	"compress/gzip"
 	"fmt"
 	"io"
-	"strings"
-	"os"
-	"time"
 	"io/ioutil"
+	"os"
 	"path"
 	"path/filepath"
+	"strings"
+	"time"
 )
 
 func bindata_read(data []byte, name string) ([]byte, error) {
@@ -36,9 +36,9 @@ type asset struct {
 }
 
 type bindata_file_info struct {
-	name string
-	size int64
-	mode os.FileMode
+	name    string
+	size    int64
+	mode    os.FileMode
 	modTime time.Time
 }
 
@@ -77,7 +77,7 @@ func static_hello_css() (*asset, error) {
 	}
 
 	info := bindata_file_info{name: "static/hello.css", size: 33, mode: os.FileMode(436), modTime: time.Unix(1424499681, 0)}
-	a := &asset{bytes: bytes, info:  info}
+	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
 
@@ -97,7 +97,7 @@ func templates_hello_tmpl() (*asset, error) {
 	}
 
 	info := bindata_file_info{name: "templates/hello.tmpl", size: 13, mode: os.FileMode(436), modTime: time.Unix(1424500783, 0)}
-	a := &asset{bytes: bytes, info:  info}
+	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
 
@@ -142,7 +142,7 @@ func AssetNames() []string {
 
 // _bindata is a table, holding each asset generator, mapped to its name.
 var _bindata = map[string]func() (*asset, error){
-	"static/hello.css": static_hello_css,
+	"static/hello.css":     static_hello_css,
 	"templates/hello.tmpl": templates_hello_tmpl,
 }
 
@@ -182,63 +182,61 @@ func AssetDir(name string) ([]string, error) {
 }
 
 type _bintree_t struct {
-	Func func() (*asset, error)
+	Func     func() (*asset, error)
 	Children map[string]*_bintree_t
 }
+
 var _bintree = &_bintree_t{nil, map[string]*_bintree_t{
 	"static": &_bintree_t{nil, map[string]*_bintree_t{
-		"hello.css": &_bintree_t{static_hello_css, map[string]*_bintree_t{
-		}},
+		"hello.css": &_bintree_t{static_hello_css, map[string]*_bintree_t{}},
 	}},
 	"templates": &_bintree_t{nil, map[string]*_bintree_t{
-		"hello.tmpl": &_bintree_t{templates_hello_tmpl, map[string]*_bintree_t{
-		}},
+		"hello.tmpl": &_bintree_t{templates_hello_tmpl, map[string]*_bintree_t{}},
 	}},
 }}
 
 // Restore an asset under the given directory
 func RestoreAsset(dir, name string) error {
-        data, err := Asset(name)
-        if err != nil {
-                return err
-        }
-        info, err := AssetInfo(name)
-        if err != nil {
-                return err
-        }
-        err = os.MkdirAll(_filePath(dir, path.Dir(name)), os.FileMode(0755))
-        if err != nil {
-                return err
-        }
-        err = ioutil.WriteFile(_filePath(dir, name), data, info.Mode())
-        if err != nil {
-                return err
-        }
-        err = os.Chtimes(_filePath(dir, name), info.ModTime(), info.ModTime())
-        if err != nil {
-                return err
-        }
-        return nil
+	data, err := Asset(name)
+	if err != nil {
+		return err
+	}
+	info, err := AssetInfo(name)
+	if err != nil {
+		return err
+	}
+	err = os.MkdirAll(_filePath(dir, path.Dir(name)), os.FileMode(0755))
+	if err != nil {
+		return err
+	}
+	err = ioutil.WriteFile(_filePath(dir, name), data, info.Mode())
+	if err != nil {
+		return err
+	}
+	err = os.Chtimes(_filePath(dir, name), info.ModTime(), info.ModTime())
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 // Restore assets under the given directory recursively
 func RestoreAssets(dir, name string) error {
-        children, err := AssetDir(name)
-        if err != nil { // File
-                return RestoreAsset(dir, name)
-        } else { // Dir
-                for _, child := range children {
-                        err = RestoreAssets(dir, path.Join(name, child))
-                        if err != nil {
-                                return err
-                        }
-                }
-        }
-        return nil
+	children, err := AssetDir(name)
+	if err != nil { // File
+		return RestoreAsset(dir, name)
+	} else { // Dir
+		for _, child := range children {
+			err = RestoreAssets(dir, path.Join(name, child))
+			if err != nil {
+				return err
+			}
+		}
+	}
+	return nil
 }
 
 func _filePath(dir, name string) string {
-        cannonicalName := strings.Replace(name, "\\", "/", -1)
-        return filepath.Join(append([]string{dir}, strings.Split(cannonicalName, "/")...)...)
+	cannonicalName := strings.Replace(name, "\\", "/", -1)
+	return filepath.Join(append([]string{dir}, strings.Split(cannonicalName, "/")...)...)
 }
-
