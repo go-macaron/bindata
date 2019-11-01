@@ -9,7 +9,7 @@ Package bindata is a helper module that allows to use in-memory static and templ
 ## Getting Help
 
 - [API Reference](https://gowalker.org/github.com/go-macaron/bindata)
-- [Documentation](http://go-macaron.com/docs/middlewares/bindata)
+- [Documentation](https://go-macaron.com/middlewares/bindata)
 
 ## License
 
